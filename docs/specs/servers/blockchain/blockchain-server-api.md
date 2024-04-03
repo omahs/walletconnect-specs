@@ -331,3 +331,36 @@ Used to lookup fungible assets balances
 
 * `202 Accepted` - the data for the address is not fulfilled yet, re-trying is needed in up to 180 seconds.
 * `400 Bad request` - wrong requested arguments format.
+
+## Fungibles
+
+### Price
+
+Lookup for the current price of the fungible assset item:
+
+`GET /v1/fungible/price`
+
+#### Path parameters
+
+* `projectId` - The project identifier.
+* `currency` - Currency for the price calculation e.g. `usd`.
+    * Supported currencies: `usd`, `eur`, `gbp`, `aud`, `cad`, `inr`, `jpy`, `btc`, `eth`.
+* `address` - Asset's contract address in [CAIP10](https://github.com/ChainAgnostic/CAIPs/blob/main/CAIPs/caip-10.md) format.
+
+#### Success response body:
+
+```typescript
+{
+    "fungibles": object[],
+}
+```
+
+* `fungibles` - List of objects with fungibles on the requested address:
+    * `name` - Asset name. e.g. `Ethereum`.
+    * `symbol` - Native asset or ERC-20 symbol. e.g. `ETH`.
+    * `iconUrl` - URL of the asset icon.
+    * `price` - Price of a single unit of the asset in currency calculated from the request argument.
+
+#### Response error codes:
+
+* `400 Bad Request` - Wrong argument(s) was passed to the request.
