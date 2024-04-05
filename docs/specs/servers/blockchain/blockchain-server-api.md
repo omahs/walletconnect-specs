@@ -338,14 +338,14 @@ Used to lookup fungible assets balances
 
 Lookup for the current price of the fungible assset item:
 
-`GET /v1/fungible/price`
+`POST /v1/fungible/price`
 
 #### Path parameters
 
 * `projectId` - The project identifier.
 * `currency` - Currency for the price calculation e.g. `usd`.
     * Supported currencies: `usd`, `eur`, `gbp`, `aud`, `cad`, `inr`, `jpy`, `btc`, `eth`.
-* `address` - Asset's contract address in [CAIP10](https://github.com/ChainAgnostic/CAIPs/blob/main/CAIPs/caip-10.md) format.
+* `addresses` - Asset's contract addresses array in [CAIP-10](https://github.com/ChainAgnostic/CAIPs/blob/main/CAIPs/caip-10.md) format.
 
 #### Success response body:
 
@@ -356,6 +356,7 @@ Lookup for the current price of the fungible assset item:
 ```
 
 * `fungibles` - List of objects with fungibles on the requested address:
+    * `address` - Asset implementation address.
     * `name` - Asset name. e.g. `Ethereum`.
     * `symbol` - Native asset or ERC-20 symbol. e.g. `ETH`.
     * `iconUrl` - URL of the asset icon.
@@ -363,4 +364,5 @@ Lookup for the current price of the fungible assset item:
 
 #### Response error codes:
 
-* `400 Bad Request` - Wrong argument(s) was passed to the request.
+* `400 Bad Request` - Required argument is missed in the request.
+* `422 Unprocessable Entity` - Wrong argument(s) format was passed to the request.
