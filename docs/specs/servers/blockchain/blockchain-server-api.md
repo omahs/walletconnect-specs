@@ -340,12 +340,14 @@ Lookup for the current price of the fungible assset item:
 
 `POST /v1/fungible/price`
 
-#### Path parameters
+#### Request body:
+
+The POST request body should be in JSON format with the folowing structure:
 
 * `projectId` - The project identifier.
 * `currency` - Currency for the price calculation e.g. `usd`.
     * Supported currencies: `usd`, `eur`, `gbp`, `aud`, `cad`, `inr`, `jpy`, `btc`, `eth`.
-* `addresses` - Asset's contract addresses array in [CAIP-10](https://github.com/ChainAgnostic/CAIPs/blob/main/CAIPs/caip-10.md) format.
+* `addresses` - Asset's contract addresses array of strings in [CAIP-10](https://github.com/ChainAgnostic/CAIPs/blob/main/CAIPs/caip-10.md) format.
 
 #### Success response body:
 
